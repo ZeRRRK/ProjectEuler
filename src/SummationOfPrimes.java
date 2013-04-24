@@ -1,18 +1,12 @@
+import math.Sieve;
+
 /**
- * Project Euler: Sum Square Difference (Problem 6)
- * <http://projecteuler.net/problem=6>
+ * Project Euler: Summation of Primes (Problem 10)
+ * <http://projecteuler.net/problem=10>
  * 
- * The sum of the squares of the first ten natural numbers is,
- * 
- * 		1^2 + 2^2 + ... + 10^2 = 385
- * 		
- * The square of the sum of the first ten natural numbers is,
+ * The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
  *
- * 		(1 + 2 + ... + 10)^2 = 55^2 = 3025
- * 
- * Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025 - 385 = 2640.
- * 
- * Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
+ * Find the sum of all the primes below two million.
  * 
  * Copyright (C) 2013 Matt Yackel
  *
@@ -32,21 +26,21 @@
  * @author Matt
  *
  */
-public class SumSquareDifference {
+public class SummationOfPrimes {
 
 	/**
 	 * JVM entry point.
 	 * @param args The command-line arguments.
 	 */
 	public static void main(String[] args) {
-		int sum = 0;
-		int square = 0;
-		for(int i = 1; i <= 100; i++) {
-			sum += i * i;
-			square += i;
+		Sieve sieve = new Sieve(2000000);
+		sieve.evaluate();
+		int[] primes = sieve.toArray();
+		long sum = 0;
+		for(int i = 0; i < primes.length; i++) {
+			sum += primes[i];
 		}
-		square = square * square;
-		System.out.println("Result: " + (square - sum));
+		System.out.println("Result: " + sum);
 	}
 
 }
